@@ -129,13 +129,14 @@ void send_mail(const char *receiver, const char *subject, const char *msg, const
 
     // TODO: Authentication. Server response should be printed out.
     send_frag(s_fd, NULL, "AUTH LOGIN");
-    // print_msg(s_fd);
+    print_msg(s_fd);
     char *user_base64 = encode_str(user), *pass_base64 = encode_str(pass);
     send_frag(s_fd, NULL, user_base64);
+    print_msg(s_fd);
     send_frag(s_fd, NULL, pass_base64);
+    print_msg(s_fd);
     free(user_base64);
     free(pass_base64);
-    print_msg(s_fd);
 
     // TODO: Send MAIL FROM command and print server response
     const char *MAIL_FROM = "MAIL FROM:";
@@ -177,7 +178,7 @@ void send_mail(const char *receiver, const char *subject, const char *msg, const
 
     if (att_path)
     {
-        char* content = read_file_content(att_path);
+        char *content = read_file_content(att_path);
         send_frag(s_fd, NULL, "--200110611");
         send_frag(s_fd, "Content-Type:", "application/octet-stream");
         send_frag(s_fd, "Content-Transfer-Encoding:", "base64");
