@@ -9,7 +9,7 @@
 #include <getopt.h>
 #include "base64_utils.h"
 
-#define MAX_SIZE 4095
+#define MAX_SIZE 1024 * 1024 * 8 - 1
 
 char buf[MAX_SIZE + 1];
 
